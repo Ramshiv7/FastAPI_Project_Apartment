@@ -1,6 +1,7 @@
-from pydantic import BaseModel 
+from pydantic import BaseModel, EmailStr
 from typing import Optional 
 from datetime import datetime
+
 
 
 class OwnerBase(BaseModel):
@@ -8,8 +9,8 @@ class OwnerBase(BaseModel):
     age : int 
     gender : str
     paid_maintenance : bool = False
-
-
+    created_at : datetime
+    
     class Config:
         orm_mode = True 
 
@@ -28,3 +29,16 @@ class OwnerReturn(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class OwnerLogin(BaseModel):
+    email : EmailStr
+    password : str 
+
+    class Config: # if Missed -> Error :  value is not a valid dict (type=type_error.dict)
+        orm_mode = True
+
+
+
+class LoginReturn(OwnerLogin):
+    pass

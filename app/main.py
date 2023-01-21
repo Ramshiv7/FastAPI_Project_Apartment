@@ -47,3 +47,13 @@ def update_owner(id: int,update_inbound : schemas.UpdateOwner, db : Session = De
     db.commit()
     #db.refresh(db_data)
     return db_data.first()
+
+
+
+@app.post('/login', response_model=schemas.LoginReturn)
+def login_details(details: schemas.OwnerLogin, db: Session = Depends(connect_db)):
+    new_data = models.Login(**details.dict())
+    db.add(new_data)
+    db.commit()
+    db.refresh(new_data)
+    return new_data

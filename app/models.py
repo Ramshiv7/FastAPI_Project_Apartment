@@ -16,3 +16,10 @@ class DB(Base):
 
 
 
+class Login(Base):
+    __tablename__ = 'owner_logins'
+
+    id = Column(Integer, primary_key=True, nullable=False)
+    email = Column(Text, unique=True, nullable=False)
+    password = Column(Text, nullable=False)
+    created_time = Column(TIMESTAMP, server_default=text('now()'))
