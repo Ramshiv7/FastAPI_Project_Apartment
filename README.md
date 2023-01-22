@@ -12,7 +12,8 @@
 
 * Fast API 
 * Postgres
+* OAuth2 
+* JWT Token Authentication 
 * Alembic 
-* OAuth2 Authentication 
 * Docker 
 * AWS
