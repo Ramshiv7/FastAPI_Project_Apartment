@@ -33,6 +33,7 @@ def get_owner_id(name: str, db : Session = Depends(connect_db)):
 def insert_new_owner(inbound_details: schemas.NewOwner, db: Session = Depends(connect_db)):
     # Remember Before Adding New Data into DB, Make the Data as Dict
     new_details_insert = models.DB(**inbound_details.dict())
+    
     db.add(new_details_insert)
     db.commit() # must commit the records
     db.refresh(new_details_insert)

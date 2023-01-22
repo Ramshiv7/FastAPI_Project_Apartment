@@ -8,8 +8,8 @@ from .. import utils
 
 # Provide API router & Import APIRouter from fastapi
 router = APIRouter(
-    prefix='/login',
-    tags=['Login']
+    prefix='/user',
+    tags=['User']
 )
 
 
@@ -18,7 +18,7 @@ def login_details(details: schemas.OwnerLogin, db: Session = Depends(connect_db)
     # new_data = models.Login(**details.dict()) -- Before Hashing 
     pwd_data = utils.hash_pass(details.password)
     details.password = pwd_data # Hashed Password has been Updated
-    new_data = models.Login(**details.dict())
+    new_data = models.User(**details.dict())
     db.add(new_data)
     db.commit()
     db.refresh(new_data)

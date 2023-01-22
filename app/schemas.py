@@ -15,8 +15,11 @@ class OwnerBase(BaseModel):
         orm_mode = True 
 
 
-class NewOwner(OwnerBase):
-    pass
+class NewOwner(BaseModel):
+    name : str 
+    age : int 
+    gender : str
+    paid_maintenance : bool = False
 
 class UpdateOwner(OwnerBase):
     name : str
@@ -39,6 +42,11 @@ class OwnerLogin(BaseModel):
         orm_mode = True
 
 
-
 class LoginReturn(OwnerLogin):
     pass
+
+
+class AuthLogin(BaseModel):
+    email : EmailStr
+    password : str
+

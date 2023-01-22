@@ -16,7 +16,7 @@ class DB(Base):
 
 
 
-class Login(Base):
+class User(Base):
     __tablename__ = 'owner_logins'
 
     id = Column(Integer, primary_key=True, nullable=False)
