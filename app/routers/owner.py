@@ -53,7 +53,7 @@ def update_owner(id: int,update_inbound : schemas.UpdateOwner, db : Session = De
 
 @router.delete('/{id}')
 def delete_owner(id: int, db: Session = Depends(connect_db)):
-    to_be_deleted = db.query(models.DB).filter(models.DB.id == id).first()
+    to_be_deleted = db.query(models.DB).filter(models.DB.id == id)
     to_be_deleted.delete(synchronize_session=False)
     db.commit()
     return f"Data has been Deleted for {id}"
