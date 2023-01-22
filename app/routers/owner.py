@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Depends, APIRouter
 from sqlalchemy.orm import Session
+from ..oauth2 import get_current_user
 from typing import List
 from ..database import Base, engine, connect_db
 from .. import models
@@ -30,7 +31,7 @@ def get_owner_id(name: str, db : Session = Depends(connect_db)):
 
 # List [] is not needed in Response Model - find out why ?
 @router.post('/', response_model=schemas.OwnerBase)
-def insert_new_owner(inbound_details: schemas.NewOwner, db: Session = Depends(connect_db)):
+def insert_new_owner(inbound_details: schemas.NewOwner, db: Session = Depends(connect_db), user_id: int = Depends(get_current_user)):
     # Remember Before Adding New Data into DB, Make the Data as Dict
     new_details_insert = models.DB(**inbound_details.dict())
     
