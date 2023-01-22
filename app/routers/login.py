@@ -12,7 +12,7 @@ router = APIRouter(
 )
 
 
-@router.post('/login', response_model=schemas.LoginReturn)
+@router.post('/', response_model=schemas.LoginReturn)
 def login_details(details: schemas.OwnerLogin, db: Session = Depends(connect_db)):
     new_data = models.Login(**details.dict())
     db.add(new_data)
